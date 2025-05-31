@@ -248,3 +248,41 @@
 </body>
 
 </html>
+
+
+# 1. Generate SSH key with a custom filename and comment
+ssh-keygen -t ed25519 -C "jonna.kamberi@gmail.com" -f /home/jonakamberii/.ssh/id_ed25519_custom
+
+# 2. Start the ssh-agent and add your private key
+eval "$(ssh-agent -s)"
+ssh-add /home/jonakamberii/.ssh/id_ed25519_custom
+
+# 3. Show your public key (copy this whole output including the email)
+cat /home/jonakamberii/.ssh/id_ed25519_custom.pub
+
+# After adding the public key to GitHub, test the connection
+ssh -T git@github.com
+
+# 4. Clone your GitHub repository into a folder named 'tasks'
+git clone git@github.com:Enesjashari/ai-jobs.git tasks
+
+# 5. Enter the repo folder
+cd tasks
+
+# 6. Pull latest changes (optional, right after clone)
+git pull origin main
+
+
+
+
+#extra Run this to check the current remote URL:
+git remote -v
+
+#If it's HTTPS, update it to use SSH:
+git remote set-url origin git@github.com:Enesjashari/ai-jobs.git
+
+#Fetch or Push 
+git push origin main  | git pull origin main
+
+git config --global user.email "enesjashari2004@gmail.com"  
+git config --global user.name "Enes Jashari"  
